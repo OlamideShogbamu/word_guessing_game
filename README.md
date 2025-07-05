@@ -1,16 +1,8 @@
 # word_guessing_game
 
-A simple word guessing  game developed with Flutter and uses GetX for all state management
+A Flutter word guessing game with GetX for all state management.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+For a quick play of this game, visit
+[Appetize](https://appetize.io/app/b_mcjhkj6mffkdsl7rwilizbhvpe).
