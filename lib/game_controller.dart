@@ -20,10 +20,13 @@ class GameController extends GetxController {
     // Don't reset score here - let it accumulate across games
   }
 
-  void makeGuess(String guess) {
-    if (guess.length == 4 && guess.isNotEmpty) {
-      guesses.add(guess);
-      if (guess.toLowerCase() == secretWord.value.toLowerCase()) {
+  void makeGuess(String? guess) {
+    if (guess == null) return;
+
+    final trimmedGuess = guess.trim();
+    if (trimmedGuess.length == 4 && RegExp(r'^[a-zA-Z]+$').hasMatch(trimmedGuess)) {
+      guesses.add(trimmedGuess);
+      if (trimmedGuess.toLowerCase() == secretWord.value.toLowerCase()) {
         score.value += 10;
         // Add a small delay before starting new game for better UX
         Future.delayed(Duration(milliseconds: 1500), () {
