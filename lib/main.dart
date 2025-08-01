@@ -63,7 +63,7 @@ class GameScreen extends StatelessWidget {
                   ],
                 ),
                 child: Obx(
-                      () => Row(
+                  () => Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
@@ -108,7 +108,7 @@ class GameScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     Obx(
-                          () => Text(
+                      () => Text(
                         ' ${'⭐' * controller.secretWord.value.length}',
                         style: const TextStyle(
                           fontSize: 32,
@@ -245,97 +245,97 @@ class GameScreen extends StatelessWidget {
 
               // Guesses History
               Obx(
-                    () => controller.guesses.isNotEmpty
+                () => controller.guesses.isNotEmpty
                     ? Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(15),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withValues(alpha: 0.2),
-                        blurRadius: 10,
-                        offset: const Offset(0, 5),
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '🎲 Your Guesses',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.grey[700],
+                        padding: const EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(15),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withValues(alpha: 0.2),
+                              blurRadius: 10,
+                              offset: const Offset(0, 5),
+                            ),
+                          ],
                         ),
-                      ),
-                      const SizedBox(height: 15),
-                      Column(
-                        children: controller.guesses.map((guess) {
-                          bool isCorrect = guess.toLowerCase() ==
-                              controller.secretWord.value.toLowerCase();
-                          return Container(
-                            margin: const EdgeInsets.only(bottom: 10),
-                            padding: const EdgeInsets.all(15),
-                            decoration: BoxDecoration(
-                              color: isCorrect
-                                  ? Colors.green.withValues(alpha: 0.1)
-                                  : Colors.red.withValues(alpha: 0.1),
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(
-                                color:
-                                isCorrect ? Colors.green : Colors.red,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              '🎲 Your Guesses',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.grey[700],
                               ),
                             ),
-                            child: Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  guess.toUpperCase(),
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
+                            const SizedBox(height: 15),
+                            Column(
+                              children: controller.guesses.map((guess) {
+                                bool isCorrect = guess.toLowerCase() ==
+                                    controller.secretWord.value.toLowerCase();
+                                return Container(
+                                  margin: const EdgeInsets.only(bottom: 10),
+                                  padding: const EdgeInsets.all(15),
+                                  decoration: BoxDecoration(
                                     color: isCorrect
-                                        ? Colors.green[700]
-                                        : Colors.red[700],
+                                        ? Colors.green.withValues(alpha: 0.1)
+                                        : Colors.red.withValues(alpha: 0.1),
+                                    borderRadius: BorderRadius.circular(10),
+                                    border: Border.all(
+                                      color:
+                                          isCorrect ? Colors.green : Colors.red,
+                                    ),
                                   ),
-                                ),
-                                Row(
-                                  children: [
-                                    Icon(
-                                      isCorrect
-                                          ? Icons.check_circle
-                                          : Icons.cancel,
-                                      color: isCorrect
-                                          ? Colors.green
-                                          : Colors.red,
-                                      size: 20,
-                                    ),
-                                    const SizedBox(width: 5),
-                                    Text(
-                                      isCorrect
-                                          ? 'Correct!'
-                                          : 'Try again',
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500,
-                                        color: isCorrect
-                                            ? Colors.green[700]
-                                            : Colors.red[700],
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        guess.toUpperCase(),
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w600,
+                                          color: isCorrect
+                                              ? Colors.green[700]
+                                              : Colors.red[700],
+                                        ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            isCorrect
+                                                ? Icons.check_circle
+                                                : Icons.cancel,
+                                            color: isCorrect
+                                                ? Colors.green
+                                                : Colors.red,
+                                            size: 20,
+                                          ),
+                                          const SizedBox(width: 5),
+                                          Text(
+                                            isCorrect
+                                                ? 'Correct!'
+                                                : 'Try again',
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500,
+                                              color: isCorrect
+                                                  ? Colors.green[700]
+                                                  : Colors.red[700],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              }).toList(),
                             ),
-                          );
-                        }).toList(),
-                      ),
-                    ],
-                  ),
-                )
+                          ],
+                        ),
+                      )
                     : Container(),
               ),
 
