@@ -273,8 +273,7 @@ class GameScreen extends StatelessWidget {
                             const SizedBox(height: 15),
                             Column(
                               children: controller.guesses.map((guess) {
-                                bool isCorrect =
-                                    guess.toLowerCase() ==
+                                bool isCorrect = guess.toLowerCase() ==
                                     controller.secretWord.value.toLowerCase();
                                 return Container(
                                   margin: const EdgeInsets.only(bottom: 10),
@@ -285,9 +284,8 @@ class GameScreen extends StatelessWidget {
                                         : Colors.red.withOpacity(0.1),
                                     borderRadius: BorderRadius.circular(10),
                                     border: Border.all(
-                                      color: isCorrect
-                                          ? Colors.green
-                                          : Colors.red,
+                                      color:
+                                          isCorrect ? Colors.green : Colors.red,
                                     ),
                                   ),
                                   child: Row(
