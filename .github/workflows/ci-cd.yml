@@ -57,7 +57,7 @@ jobs:
 
       # Build the Android app
       - name: Build Android app
-        run: flutter build apk --release
+        run: flutter build apk
 
       # Upload the APK as an artifact
       - name: Upload APK
