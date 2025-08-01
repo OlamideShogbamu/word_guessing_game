@@ -49,7 +49,7 @@ jobs:
 
       # check for formatting issues
       - name: Check formatting
-        run: flutter format --set-exit-if-changed .
+        run: dart format --set-exit-if-changed .
 
       # Run Flutter tests
       - name: Run Flutter tests
