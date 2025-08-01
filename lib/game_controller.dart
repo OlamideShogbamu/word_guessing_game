@@ -24,14 +24,13 @@ class GameController extends GetxController {
     if (guess == null) return;
 
     final trimmedGuess = guess.trim();
-    if (trimmedGuess.length == 4 && RegExp(r'^[a-zA-Z]+$').hasMatch(trimmedGuess)) {
+    if (trimmedGuess.length == 4 &&
+        RegExp(r'^[a-zA-Z]+$').hasMatch(trimmedGuess)) {
       guesses.add(trimmedGuess);
       if (trimmedGuess.toLowerCase() == secretWord.value.toLowerCase()) {
         score.value += 10;
         // Add a small delay before starting new game for better UX
-        Future.delayed(Duration(milliseconds: 1500), () {
-          newGame();
-        });
+        Future.delayed(const Duration(milliseconds: 1500), newGame);
       }
     }
   }

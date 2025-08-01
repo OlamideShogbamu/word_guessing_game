@@ -1,0 +1,84 @@
+name: Android CI/CD
+
+on:
+  push:
+    branches: [ "**" ]
+  pull_request:
+    branches: [ "**" ]
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the code from the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Set up Java
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: gradle
+
+      # Set up Flutter
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.10.5'
+          channel: 'stable'
+          cache: true
+
+      # Verify Flutter installation
+      - name: Verify Flutter installation
+        run: flutter doctor -v
+
+      # Get Flutter dependencies
+      - name: Get Flutter dependencies
+        run: flutter pub get
+
+      # Get Android dependencies
+      - name: Get Android dependencies
+        run: flutter pub deps
+
+      # Run code analysis
+      - name: Run code analysis
+        run: flutter analyze
+
+      # check for formatting issues
+      - name: Check formatting
+        run: flutter format --set-exit-if-changed .
+
+      # Run Flutter tests
+      - name: Run Flutter tests
+        run: flutter test --coverage
+
+      # Build the Android app
+      - name: Build Android app
+        run: flutter build apk --release
+
+      # Upload the APK as an artifact
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: app-release.apk
+          path: build/app/outputs/flutter-apk/app-release.apk
+          retention-days: 30
+
+      # Upload coverage report
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+
+      # Create build summary
+      - name: Create build summary
+        if: always()
+        run: |
+            echo "Build completed successfully!"
+            echo "APK file is available as an artifact."
+            echo "Coverage report is available as an artifact."
+            echo "- **Build Time:** \`${{ github.event.head_commit.timestamp }}\`"
+

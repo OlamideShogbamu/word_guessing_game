@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
-import '../lib/main.dart';
-import '../lib/game_controller.dart';
+import 'package:word_guessing_game/game_controller.dart';
+import 'package:word_guessing_game/main.dart';
 
 void main() {
   group('Widget Tests', () {
@@ -10,12 +10,12 @@ void main() {
       Get.testMode = true;
     });
 
-    tearDown(() {
-      Get.reset();
-    });
+    tearDown(Get.reset);
 
-    testWidgets('should display all UI elements correctly', (WidgetTester tester) async {
-      await tester.pumpWidget(MyApp());
+    testWidgets('should display all UI elements correctly', (
+      WidgetTester tester,
+    ) async {
+      await tester.pumpWidget(const MyApp());
 
       // Verify app bar
       expect(find.text('Word Guessing Game'), findsOneWidget);
@@ -42,8 +42,10 @@ void main() {
       expect(find.text('ship'), findsOneWidget);
     });
 
-    testWidgets('should handle text input and guess submission', (WidgetTester tester) async {
-      await tester.pumpWidget(MyApp());
+    testWidgets('should handle text input and guess submission', (
+      WidgetTester tester,
+    ) async {
+      await tester.pumpWidget(const MyApp());
 
       final textField = find.byType(TextField);
       await tester.enterText(textField, 'book');
@@ -53,8 +55,10 @@ void main() {
       expect(tester.widget<TextField>(textField).controller?.text, isEmpty);
     });
 
-    testWidgets('should show correct feedback for correct guess', (WidgetTester tester) async {
-      await tester.pumpWidget(MyApp());
+    testWidgets('should show correct feedback for correct guess', (
+      WidgetTester tester,
+    ) async {
+      await tester.pumpWidget(const MyApp());
 
       final controller = Get.find<GameController>();
       controller.secretWord.value = 'tree';
@@ -68,12 +72,14 @@ void main() {
       expect(find.byIcon(Icons.check_circle), findsOneWidget);
 
       // Handle the delayed new game
-      await tester.pump(Duration(milliseconds: 1500));
+      await tester.pump(const Duration(milliseconds: 1500));
       await tester.pump();
     });
 
-    testWidgets('should update score display when correct guess is made', (WidgetTester tester) async {
-      await tester.pumpWidget(MyApp());
+    testWidgets('should update score display when correct guess is made', (
+      WidgetTester tester,
+    ) async {
+      await tester.pumpWidget(const MyApp());
 
       final controller = Get.find<GameController>();
       controller.secretWord.value = 'tree';
@@ -84,12 +90,14 @@ void main() {
       expect(find.text('Score: 10'), findsOneWidget);
 
       // Handle the delayed new game
-      await tester.pump(Duration(milliseconds: 1500));
+      await tester.pump(const Duration(milliseconds: 1500));
       await tester.pump();
     });
 
-    testWidgets('should start new game when new game button is pressed', (WidgetTester tester) async {
-      await tester.pumpWidget(MyApp());
+    testWidgets('should start new game when new game button is pressed', (
+      WidgetTester tester,
+    ) async {
+      await tester.pumpWidget(const MyApp());
 
       final controller = Get.find<GameController>();
       controller.secretWord.value = 'tree';
@@ -99,7 +107,10 @@ void main() {
       await tester.pump();
 
       // Need to ensure content is scrolled into view
-      await tester.dragFrom(tester.getCenter(find.byType(SingleChildScrollView)), Offset(0, -500));
+      await tester.dragFrom(
+        tester.getCenter(find.byType(SingleChildScrollView)),
+        const Offset(0, -500),
+      );
       await tester.pump();
 
       // Now tap the new game button
@@ -112,8 +123,10 @@ void main() {
       expect(controller.secretWord.value.length, equals(4));
     });
 
-    testWidgets('should not accept guesses with incorrect length', (WidgetTester tester) async {
-      await tester.pumpWidget(MyApp());
+    testWidgets('should not accept guesses with incorrect length', (
+      WidgetTester tester,
+    ) async {
+      await tester.pumpWidget(const MyApp());
 
       await tester.enterText(find.byType(TextField), 'cat');
       await tester.pump();
@@ -124,8 +137,10 @@ void main() {
       expect(find.text('🎲 Your Guesses'), findsNothing);
     });
 
-    testWidgets('should display stars for secret word', (WidgetTester tester) async {
-      await tester.pumpWidget(MyApp());
+    testWidgets('should display stars for secret word', (
+      WidgetTester tester,
+    ) async {
+      await tester.pumpWidget(const MyApp());
 
       final controller = Get.find<GameController>();
       controller.secretWord.value = 'tree'; // Set a known word
