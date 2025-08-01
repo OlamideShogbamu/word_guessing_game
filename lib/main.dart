@@ -220,10 +220,10 @@ class GameScreen extends StatelessWidget {
                             vertical: 8,
                           ),
                           decoration: BoxDecoration(
-                            color: Colors.purple.withValues(alpha: 0.1),
+                            color: Colors.purple.withOpacity(0.1),
                             borderRadius: BorderRadius.circular(20),
                             border: Border.all(
-                              color: Colors.purple.withValues(alpha: 0.3),
+                              color: Colors.purple.withOpacity(0.3),
                             ),
                           ),
                           child: Text(
