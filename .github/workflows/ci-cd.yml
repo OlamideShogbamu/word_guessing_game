@@ -27,9 +27,7 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.10.5'
-          channel: 'stable'
-          cache: true
+          flutter-version: '3.32.8'
 
       # Verify Flutter installation
       - name: Verify Flutter installation
@@ -72,13 +70,14 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: coverage-report
+          path: build/reports/
 
       # Create build summary
       - name: Create build summary
         if: always()
         run: |
-            echo "Build completed successfully!"
-            echo "APK file is available as an artifact."
-            echo "Coverage report is available as an artifact."
-            echo "- **Build Time:** \`${{ github.event.head_commit.timestamp }}\`"
+          echo "Build completed successfully!"
+          echo "APK file is available as an artifact."
+          echo "Coverage report is available as an artifact."
+          echo "- **Build Time:** \`${{ github.event.head_commit.timestamp }}\`"
 
